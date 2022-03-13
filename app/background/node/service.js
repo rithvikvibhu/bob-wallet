@@ -344,6 +344,7 @@ export class NodeService extends EventEmitter {
       await this.start(this.networkName);
       dispatchToMainWindow({ type: END_NODE_STATUS_CHANGE });
     } catch (e) {
+      console.error(e);
       dispatchToMainWindow({ type: END_NODE_STATUS_CHANGE });
       throw e;
     }

@@ -88,8 +88,9 @@ export const start = (network) => async (dispatch) => {
 
   } catch (error) {
     console.error('node start error', error);
+    console.error(error);
     dispatch({ type: STOP });
-    dispatch({ type: START_ERROR, payload: error.message });
+    dispatch({ type: START_ERROR, payload: error.message + '\n' + error.stack });
   } finally {
     dispatch({ type: END_NODE_STATUS_CHANGE });
   }
