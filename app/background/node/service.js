@@ -131,7 +131,9 @@ export class NodeService extends EventEmitter {
               Please make sure no other hsd or Bob Wallet instance is running.
               Quit Bob, and try again.`);
           } else {
-            throw error;
+            console.log('IN SERVICE start() error:', error, error.stack);
+            throw new Error(error.stack);
+            // throw error;
           }
         }
         await this.setHSDLocalClient();
