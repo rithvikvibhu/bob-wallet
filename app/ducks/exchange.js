@@ -388,6 +388,7 @@ export const transferExchangeLock = (name, startPrice, endPrice, durationDays) =
     const passphrase = await new Promise((resolve, reject) => dispatch(getPassphrase(resolve, reject)));
     await shakedex.transferLock(name, startPrice, endPrice, durationDays, passphrase);
   } catch (e) {
+    console.error(e);
     dispatch({
       type: PLACE_EXCHANGE_LISTING_ERR,
       payload: {
