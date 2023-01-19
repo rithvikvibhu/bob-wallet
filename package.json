@@ -154,7 +154,7 @@
     "history": "4.10.1",
     "hs-airdrop": "0.10.0",
     "hs-client": "0.0.13",
-    "hsd": "github:handshake-org/hsd#v5.0.0-rc.1",
+    "hsd": "github:handshake-org/hsd#latest",
     "hsd-ledger": "2.0.1",
     "isomorphic-fetch": "3.0.0",
     "jsonschema": "1.4.1",
