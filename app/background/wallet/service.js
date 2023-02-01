@@ -1141,6 +1141,25 @@ class WalletService {
     await b.write();
   };
 
+  changeLookahead = async (lookahead) => {
+    console.log('LOG changeLookahead: to', lookahead);
+    if (!lookahead) return null;
+    if (!this.name) return null;
+    const wallet = await this.node.wdb.get(this.name);
+    if (!wallet) return null;
+
+    const account1 = await wallet.getAccount('default');
+    console.log('LOG changeLookahead: account before:', account1);
+
+    const res = await wallet.modifyAccount('default', {lookahead});
+    console.log('LOG changeLookahead: modifyAccount:', res);
+
+    const account2 = await wallet.getAccount('default');
+    console.log('LOG changeLookahead: account after:', account2);
+
+    return res;
+  };
+
   findNonce = async (options) => {
     const {name, address, expectedBlind, rangeStart, rangeEnd, precision} = options;
 
@@ -2153,6 +2172,7 @@ const methods = {
   estimateMaxSend: service.estimateMaxSend,
   removeWalletById: service.removeWalletById,
   updateAccountDepth: service.updateAccountDepth,
+  changeLookahead: service.changeLookahead,
   findNonce: service.findNonce,
   findNonceCancel: service.findNonceCancel,
   encryptWallet: service.encryptWallet,

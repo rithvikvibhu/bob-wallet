@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import './index.scss';
 import AccountIndexModal from './AccountIndexModal';
 import MaxIdleModal from './MaxIdleModal';
+import ChangeLookaheadModal from './ChangeLookaheadModal';
 import AccountKeyModal from './AccountKeyModal';
 import RevealSeedModal from './RevealSeedModal';
 import ZapTXsModal from './ZapTXsModal';
@@ -400,6 +401,12 @@ export default class Settings extends Component {
           () => history.push('/funding-options'),
         )}
         {this.renderSection(
+          'Change Wallet Lookahead',
+          'DO NOT USE THIS UNLESS YOU\'RE SURE.',
+          t('update'),
+          () => history.push('/settings/wallet/change-lookahead'),
+        )}
+        {this.renderSection(
           t('settingRemoveWalletTitle'),
           t('settingRemoveWalletDesc', wid),
           t('settingRemoveWalletCTA'),
@@ -615,6 +622,7 @@ export default class Settings extends Component {
           <Route path="/settings/wallet/account-key" component={AccountKeyModal} />
           <Route path="/settings/wallet/reveal-seed" component={RevealSeedModal} />
           <Route path="/settings/wallet/zap-txs" component={ZapTXsModal} />
+          <Route path="/settings/wallet/change-lookahead" component={ChangeLookaheadModal} />
           <Route path="/settings/connection/configure" component={CustomRPCConfigModal} />
           <Route path="/settings/connection/changeDirectory" component={ChangeDirectoryModal} />
           <Route path="/settings/wallet/view-api-key">
