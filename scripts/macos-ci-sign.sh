@@ -39,6 +39,7 @@ additional_files=(
     "Contents/Resources/app.asar.unpacked/node_modules/bcrypto/build/Release/bcrypto.node"
     "Contents/Resources/app.asar.unpacked/node_modules/bcrypto/build/node_gyp_bins/python3"
     "Contents/Frameworks/Squirrel.framework/Versions/A/Resources/ShipIt"
+    "Contents/Frameworks/Electron\ Framework.framework/Versions/A/Libraries/libffmpeg.dylib"
 )
 
 # Sign each file individally, rcodesign does not pick them up (bug)
