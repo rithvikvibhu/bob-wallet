@@ -19,6 +19,8 @@ fi
 entitlements="`pwd`/resources/entitlements.plist"
 release_dir="`pwd`/release/Bob.app"
 
+ls -la
+echo "pwd: `pwd`"
 echo "using rcodesign: $program"
 echo "using entitlements: $entitlements"
 echo "using release_dir: $release_dir"
