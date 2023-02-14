@@ -19,11 +19,15 @@ fi
 entitlements="`pwd`/resources/entitlements.plist"
 release_dir="`pwd`/release/Bob.app"
 
-ls -la
 echo "pwd: `pwd`"
 echo "using rcodesign: $program"
+ls -la
 echo "using entitlements: $entitlements"
+ls -la resources/
 echo "using release_dir: $release_dir"
+ls -la release/
+
+ls -la /tmp/
 
 # Sign
 echo "[*] Signing..."

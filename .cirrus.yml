@@ -2,6 +2,21 @@ macos_instance:
   image: ghcr.io/cirruslabs/macos-ventura-xcode:latest
 
 build_task:
+  # Load public key to env
+  environment:
+    SIGNING_PUBLIC_KEY: ENCRYPTED[9ecd1dce11858b0bdbaf664e08c89de152aa57a32cf46bd56a28c3ed38127464ca4f17f1fbca1e00894f442949ba6205]
+    APPSTORECONNECT_KEY: ENCRYPTED[7ff7b3572ccb3bbe0e4ca4c1b3219731b5a6eaa9296ad3446ef67557e843725d3f64955983620c135542e6d7cd1620a5]
+
+  # Save public key from env to file
+  signing_public_key_file:
+    path: /tmp/signing_public_key.pem
+    variable_name: SIGNING_PUBLIC_KEY
+
+  # Save appstoreconnect key from env to file
+  appstoreconnect_key_file:
+    path: /tmp/appstoreconnect_key.json
+    variable_name: APPSTORECONNECT_KEY
+
   # Install nodejs
   nodejs_script:
     # - brew update
