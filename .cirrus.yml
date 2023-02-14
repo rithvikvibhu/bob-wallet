@@ -1,0 +1,33 @@
+macos_instance:
+  image: ghcr.io/cirruslabs/macos-ventura-xcode:latest
+
+build_task:
+
+  # Install nodejs
+  nodejs_script:
+    - brew update
+    - brew install node
+
+  # Cache
+  node_modules_cache:
+    folder: node_modules
+    reupload_on_changes: false # since there is a fingerprint script
+    fingerprint_script:
+      - echo $CIRRUS_OS
+      - node --version
+      - cat package.json package-lock.json
+
+  # Install deps
+  install_deps_script:
+    - npm install dmg-license --no-save
+
+  # Build and Test
+  test_script:
+    - npm run test
+
+  # Package dmg
+  package_script:
+    - npm run package-mac
+
+  binaries_artifacts:
+    path: "release/*"
