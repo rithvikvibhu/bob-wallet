@@ -45,12 +45,13 @@ build_task:
 
   # Sign zip
   sign_script:
+    - chmod +x scripts/macos-ci.sign.sh
     - scripts/macos-ci-sign.sh
 
-  # Notarize app
-  notarize_script:
-    - rcodesign notary-submit --api-key-path /tmp/appstoreconnect_key.json --staple release/Bob.app
-    - zip -r release/Bob-macos-arm64.zip --symlinks release/Bob.app
+  # # Notarize app
+  # notarize_script:
+  #   - rcodesign notary-submit --api-key-path /tmp/appstoreconnect_key.json --staple release/Bob.app
+  #   - zip -r release/Bob-macos-arm64.zip --symlinks release/Bob.app
 
   # Upload artifacts
   binaries_artifacts:
