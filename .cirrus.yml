@@ -7,14 +7,14 @@ build_task:
     # - brew update
     - brew install node
 
-  # Cache
-  node_modules_cache:
-    folder: node_modules
-    reupload_on_changes: false # since there is a fingerprint script
-    fingerprint_script:
-      - echo $CIRRUS_OS
-      - node --version
-      - cat package.json package-lock.json
+  # # Cache
+  # node_modules_cache:
+  #   folder: node_modules
+  #   reupload_on_changes: false # since there is a fingerprint script
+  #   fingerprint_script:
+  #     - echo $CIRRUS_OS
+  #     - node --version
+  #     - cat package.json package-lock.json
 
   # Install deps
   install_deps_script:
