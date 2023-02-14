@@ -45,8 +45,8 @@ build_task:
 
   # Sign zip
   sign_script:
-    - chmod +x scripts/macos-ci.sign.sh
-    - scripts/macos-ci-sign.sh
+    - chmod +x scripts/macos-ci-sign.sh
+    - ./scripts/macos-ci-sign.sh
 
   # # Notarize app
   # notarize_script:
