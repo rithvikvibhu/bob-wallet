@@ -20,9 +20,6 @@ build_task:
   install_deps_script:
     - npm install dmg-license --no-save
 
-  upload_caches:
-    - node_modules
-
   # Build and Test
   test_script:
     - npm run test
