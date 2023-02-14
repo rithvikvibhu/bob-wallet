@@ -19,6 +19,7 @@ build_task:
   # Install deps
   install_deps_script:
     - npm install dmg-license --no-save
+    - npm rebuild
 
   # Build and Test
   test_script:
