@@ -16,14 +16,19 @@ else
     fi
 fi
 
+entitlements="`pwd`/resources/entitlements.plist"
+release_dir="`pwd`/release/Bob.app"
+
 echo "using rcodesign: $program"
+echo "using entitlements: $entitlements"
+echo "using release_dir: $release_dir"
 
 # Sign
 echo "[*] Signing..."
-$program sign --remote-signer --remote-public-key-pem-file /tmp/signing_public_key.pem --code-signature-flags runtime --entitlements-xml-path resources/entitlements.plist release/Bob.app
+$program sign --remote-signer --remote-public-key-pem-file /tmp/signing_public_key.pem --code-signature-flags runtime --entitlements-xml-path $entitlements $release_dir
 
 # Notarize
 echo "[*] Notarizing..."
-$program notary-submit --api-key-path /tmp/appstoreconnect_key.json --staple release/Bob.app
+$program notary-submit --api-key-path /tmp/appstoreconnect_key.json --staple $release_dir
 
 echo "[*] Done."
