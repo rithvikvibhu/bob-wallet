@@ -13,7 +13,7 @@ build_task:
     variable_name: SIGNING_PUBLIC_KEY
 
   # Save appstoreconnect key from env to file
-  signing_public_key_file:
+  appstoreconnect_key_file:
     path: /tmp/appstoreconnect_key.json
     variable_name: APPSTORECONNECT_KEY
 
