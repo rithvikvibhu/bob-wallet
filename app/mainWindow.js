@@ -5,6 +5,8 @@ remoteMain.initialize();
 
 let mainWindow;
 
+const version = require('../package.json').version;
+
 export default function showMainWindow() {
   if (mainWindow) {
     mainWindow.focus();
@@ -15,6 +17,7 @@ export default function showMainWindow() {
     show: false,
     width: 1024,
     height: 728,
+    title: `Bob ${version}`,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,

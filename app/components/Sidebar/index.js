@@ -61,10 +61,16 @@ class Sidebar extends Component {
   static contextType = I18nContext;
 
   render() {
+    const version = require('../../../package.json').version;
+    const background = {
+      '2.0.0-msdemo.1': '#ff2f1f',
+      '2.0.0-msdemo.2': '#0bca6b',
+      '2.0.0-msdemo.3': '#2480fd',
+    }[version];
     return (
       <div className="sidebar">
         <div className="sidebar__content">
-          <div className="sidebar__logo-wrapper">
+          <div className="sidebar__logo-wrapper" style={{background: background}}>
             <Logo />
           </div>
           {this.renderNav()}

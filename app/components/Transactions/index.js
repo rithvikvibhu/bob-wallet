@@ -75,7 +75,7 @@ export default class Transactions extends Component {
     }
   }
 
-  refreshTransactions = debounce(() => this.props.fetchTransactions(), 5000)
+  refreshTransactions = debounce(() => this.props.fetchTransactions(), 1000)
 
   state = {
     currentPageIndex: 0,

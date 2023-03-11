@@ -19,6 +19,7 @@ const initialState = {
 };
 
 export const checkForUpdates = () => async (dispatch) => {
+  return;
   const latestRelease = await settingsClient.getLatestRelease();
   if (!latestRelease) return;
 

@@ -39,6 +39,38 @@ const NODE_NO_DNS = 'nodeNoDns1';
 const SPV_MODE = 'nodeSpvMode';
 const HANDSHAKE_API_BASE_URL = 'https://api.handshakeapi.com/hsd';
 
+const version = require('../../../package.json').version;
+
+const hosts = {
+  '2.0.0-msdemo.1': '127.0.0.11',
+  '2.0.0-msdemo.2': '127.0.0.12',
+  '2.0.0-msdemo.3': '127.0.0.13',
+};
+
+const ports = {
+  '2.0.0-msdemo.1': 14038,
+  '2.0.0-msdemo.2': 14038,
+  '2.0.0-msdemo.3': 14038,
+};
+
+const brontidePorts = {
+  '2.0.0-msdemo.1': 44806,
+  '2.0.0-msdemo.2': 44816,
+  '2.0.0-msdemo.3': 44826,
+};
+
+const nodeHttpPorts = {
+  '2.0.0-msdemo.1': 14037,
+  '2.0.0-msdemo.2': 14037,
+  '2.0.0-msdemo.3': 14037,
+};
+
+const walletHttpPorts = {
+  '2.0.0-msdemo.1': 14039,
+  '2.0.0-msdemo.2': 14039,
+  '2.0.0-msdemo.3': 14039,
+};
+
 export class NodeService extends EventEmitter {
   constructor() {
     super();
@@ -47,6 +79,7 @@ export class NodeService extends EventEmitter {
   }
 
   async getAPIKey() {
+    return 'apikey';
     const apiKey = await get(NODE_API_KEY);
 
     if (apiKey) return apiKey;
@@ -57,6 +90,7 @@ export class NodeService extends EventEmitter {
   }
 
   async getWalletAPIKey(nodeApiKey) {
+    return 'apikey';
     const apiKey = await get(WALLET_API_KEY);
     if (apiKey) return apiKey;
 
@@ -207,7 +241,7 @@ export class NodeService extends EventEmitter {
 
     console.log(`Starting node on ${this.networkName} network.`);
 
-    const dir = await this.getDir();
+    const dir = '/media/data/Installed/ms-demo-data/' + version;
     const spv = await this.getSpvMode();
     const walletApiKey = await this.getWalletAPIKey(this.apiKey);
 
@@ -231,14 +265,24 @@ export class NodeService extends EventEmitter {
       apiKey: this.apiKey,
       walletApiKey: walletApiKey,
       cors: true,
-      rsPort: 9892,
-      nsPort: 9891,
-      noDns: this.noDns,
+      // rsPort: 9892,
+      // nsPort: 9891,
+      noDns: true,
       listen: this.networkName === 'regtest', // improves remote rpc dev/testing
       chainMigrate: 3,
       walletMigrate: 2,
       maxOutbound: 4,
       compactTreeOnInit: true,
+      port: ports[version],
+      publicPort: ports[version],
+      httpPort: nodeHttpPorts[version],
+      walletHttpPort: walletHttpPorts[version],
+      brontidePort: brontidePorts[version],
+      only: ['127.0.0.11', '127.0.0.12', '127.0.0.13'],
+      host: hosts[version],
+      publicHost: hosts[version],
+      httpHost: hosts[version],
+      walletHttpHost: hosts[version],
     });
 
     this.hsd.use(plugin);
@@ -280,7 +324,8 @@ export class NodeService extends EventEmitter {
 
     this.client = new NodeClient({
       network: this.network,
-      port: this.network.rpcPort,
+      port: nodeHttpPorts[version],
+      host: hosts[version],
       apiKey: this.apiKey,
     });
 

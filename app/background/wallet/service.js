@@ -56,6 +56,38 @@ const ONE_MINUTE = 60000;
 
 const WALLET_API_KEY = 'walletApiKey';
 
+const version = require('../../../package.json').version;
+
+const hosts = {
+  '2.0.0-msdemo.1': '127.0.0.11',
+  '2.0.0-msdemo.2': '127.0.0.12',
+  '2.0.0-msdemo.3': '127.0.0.13',
+};
+
+const ports = {
+  '2.0.0-msdemo.1': 14038,
+  '2.0.0-msdemo.2': 14038,
+  '2.0.0-msdemo.3': 14038,
+};
+
+const brontidePorts = {
+  '2.0.0-msdemo.1': 44806,
+  '2.0.0-msdemo.2': 44816,
+  '2.0.0-msdemo.3': 44826,
+};
+
+const nodeHttpPorts = {
+  '2.0.0-msdemo.1': 14037,
+  '2.0.0-msdemo.2': 14037,
+  '2.0.0-msdemo.3': 14037,
+};
+
+const walletHttpPorts = {
+  '2.0.0-msdemo.1': 14039,
+  '2.0.0-msdemo.2': 14039,
+  '2.0.0-msdemo.3': 14039,
+};
+
 class WalletService {
   constructor() {
     nodeService.on('start remote', this._useWalletNode);
@@ -118,7 +150,8 @@ class WalletService {
 
     this.client = new WalletClient({
       network: this.network,
-      port: this.network.walletPort,
+      port: walletHttpPorts[version],
+      host: hosts[version],
       apiKey: this.walletApiKey,
       timeout: 10000,
     });

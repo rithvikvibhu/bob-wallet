@@ -89,7 +89,7 @@ export default class Account extends Component {
 
   constructor(props) {
     super(props);
-    this.updateStatsAndBalance = throttle(this.updateStatsAndBalance, 15000, { trailing: true });
+    this.updateStatsAndBalance = throttle(this.updateStatsAndBalance, 1000, { trailing: true });
 
     const {walletType, walletInitialized} = this.props;
 
@@ -139,7 +139,7 @@ export default class Account extends Component {
     }
   }
 
-  updateStatsAndBalance = throttle(this._updateStatsAndBalance, 15000, { trailing: true })
+  updateStatsAndBalance = throttle(this._updateStatsAndBalance, 1000, { trailing: true })
 
   onCardButtonClick = async (action, args) => {
     const {t} = this.context;

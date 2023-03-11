@@ -1,8 +1,8 @@
 {
   "name": "bob-wallet",
-  "productName": "Bob",
+  "productName": "Bob msdemo.3",
   "author": "Kyokan Group, Inc.",
-  "version": "2.0.0",
+  "version": "2.0.0-msdemo.3",
   "description": "A Handshake wallet and auction manager.",
   "scripts": {
     "build": "./scripts/package.sh",
@@ -26,8 +26,9 @@
   },
   "main": "./dist/main.js",
   "build": {
+    "npmRebuild": false,
     "productName": "Bob",
-    "appId": "com.kyokan.BobRelease",
+    "appId": "com.kyokan.BobRelease.msdemo.3",
     "protocols": {
       "name": "bob-wallet",
       "schemes": [
