@@ -832,11 +832,16 @@ class WalletService {
     return this.client.unlock(this.name, passphrase);
   };
 
-  isLocked = async () => {
+  /**
+   * 
+   * @param {boolean} ignoreLedger if true, doesn't skip check if ledger
+   * @returns 
+   */
+  isLocked = async (ignoreLedger = false) => {
     const info = await this.getWalletInfo();
 
     // Ledger is always "unlocked"
-    if (info.watchOnly) {
+    if (!ignoreLedger && info.watchOnly) {
       return false;
     }
 

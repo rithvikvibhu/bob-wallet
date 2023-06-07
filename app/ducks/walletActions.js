@@ -344,8 +344,8 @@ export const setMaxIdle = (maxIdle) => async (dispatch) => {
   })
 };
 
-export const getPassphrase = (resolve, reject) => async (dispatch, getState) => {
-  if (getState().wallet.watchOnly === true) {
+export const getPassphrase = (resolve, reject, ignoreLedger = false) => async (dispatch, getState) => {
+  if (!ignoreLedger && getState().wallet.watchOnly === true) {
     resolve();
     return;
   }

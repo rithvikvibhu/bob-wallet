@@ -45,19 +45,19 @@ export default class MaxIdleModal extends Component {
   onChangeLookahead = async () => {
     const {lookahead} = this.state;
     try {
-      if (await walletClient.isLocked()) {
+      if (await walletClient.isLocked(true)) {
         await new Promise((resolve, reject) => {
-          this.props.getPassphrase(resolve, reject);
+          this.props.getPassphrase(resolve, reject, true);
         });
       }
-      const res = await walletClient.changeLookahead(lookahead);
-      console.log('LOG onChangeLookahead:', res);
+      await walletClient.changeLookahead(lookahead);
       await this.props.fetchWallet();
       this.props.showSuccess('Updated lookahead.');
-      // this.props.history.push("/settings");
+      this.props.history.goBack();
     } catch (e) {
       console.error(e);
       this.props.showError(e.message);
+      this.props.history.goBack();
     }
   };
 
