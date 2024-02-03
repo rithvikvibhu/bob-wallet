@@ -49,7 +49,7 @@ echo "[*] Signing..."
 # done
 
 echo "[*] Signing final bundle..."
-$program sign --remote-public-key-pem-file /tmp/signing_public_key.pem --code-signature-flags runtime --entitlements-xml-path $entitlements $release_dir
+$program sign --remote-signer --remote-public-key-pem-file /tmp/signing_public_key.pem --code-signature-flags runtime --entitlements-xml-path $entitlements $release_dir
 
 # Notarize
 echo "[*] Notarizing..."
