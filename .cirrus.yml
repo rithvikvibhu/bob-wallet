@@ -50,11 +50,11 @@ build_task:
   install_rcodesign_script:
     - curl -sL https://github.com/indygreg/apple-platform-rs/releases/download/apple-codesign%2F0.27.0/apple-codesign-0.27.0-aarch64-apple-darwin.tar.gz | tar xzvf -
 
-  # Sign and notarize zip
-  sign_and_notarize_script:
-    - chmod +x scripts/macos-ci-sign.sh
-    - ./scripts/macos-ci-sign.sh `pwd`/apple-codesign-0.27.0-aarch64-apple-darwin/rcodesign
-    - zip -r release/Bob-macos-arm64-signed.zip --symlinks release/Bob.app
+  # # Sign and notarize zip
+  # sign_and_notarize_script:
+  #   - chmod +x scripts/macos-ci-sign.sh
+  #   - ./scripts/macos-ci-sign.sh `pwd`/apple-codesign-0.27.0-aarch64-apple-darwin/rcodesign
+  #   - zip -r release/Bob-macos-arm64-signed.zip --symlinks release/Bob.app
 
   # Upload artifacts
   binaries_artifacts:
