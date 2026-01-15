@@ -56,7 +56,7 @@ jobs:
         run: ${{ matrix.cmd_package }}
 
       - name: Store artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.out_filename }}
           path: |
